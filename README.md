@@ -20,4 +20,8 @@
 #####    AVL Tree
 #####    KD Tree
 #####    Trie
-#####    Knuth-Morris-Pratt - 
+#####    Knuth-Morris-Pratt
+#####    Graph
+#####   Ternary Search Tree
+#####   Disjoint sets
+#####   Binary Indexed Tree
