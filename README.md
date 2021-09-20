@@ -4,11 +4,20 @@
 
 ### Data Structures that are gonna be used in this repo are:
 
-####  Array
-####  Linked List
-####  Hashing
-####  Heap
-####  Binary Tree
-####  Binary Search Tree
-####  Graph
-
+#####    Stack
+#####    Queue
+#####    Singly-Linked List
+#####   Doubly-Linked List
+#####    Skip List
+#####    Hash Table
+#####   Set
+#####    Priority Queue
+#####   Binary Search Tree
+#####    Cartesian Tree
+#####    B-Tree Balanced Tree
+#####   Red-Black Tree
+#####    Splay Tree
+#####    AVL Tree
+#####    KD Tree
+#####    Trie
+#####    Knuth-Morris-Pratt - 
