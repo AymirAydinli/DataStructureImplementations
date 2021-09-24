@@ -2,10 +2,10 @@ class Queue:
     def __init__(self):
         self.items = []
 
-    def add(self, item):
+    def enqueue(self, item):
         self.items.append(item)
 
-    def remove(self):
+    def dequeue(self):
         return self.items.pop(0)
 
     def peek(self):
