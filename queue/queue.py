@@ -11,11 +11,8 @@ class Queue:
     def peek(self):
         return self.items[0]
 
-    def isEmpty(self):
-        if not self.items:
-            return True
-        else:
-            return False
+    def empty(self):
+        return not self.items
 
     def size(self):
         return len(self.items)

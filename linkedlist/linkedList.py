@@ -4,58 +4,65 @@ class Node:
         self.next = None
 
 
-# node = Node()
-
 class LinkedList:
     def __init__(self):
         self.head = None
+        self.size = 0;
 
     def add_first(self, data):
         node = Node(data)
         node.next = self.head
         self.head = node
+        self.size += 1
 
     def add_last(self, data):
         node = Node(data)
+
         if self.head is None:
             self.head = node
             return
+
         last = self.head
         while last.next:
             last = last.next
         last.next = node
 
-    def printList(self):
-        items=[]
+        self.size += 1
+
+    def to_array(self):
+        items = []
         last = self.head
-        while last is not None:
-            #print(last.data)
+
+        while last:
             items.append(last.data)
             last = last.next
+
         return items
 
     def remove(self, data):
-        nodeH = self.head
-        if nodeH is not None:
-            if nodeH.data == data:
-                self.head = nodeH.next
-                nodeH = None
-                return
-        while nodeH is not None:
-            if nodeH.data == data:
-                break
-            prev = nodeH
-            nodeH = nodeH.next
+        node_tbd = self.head
 
-        prev.next = nodeH.next
-        nodeH = None
+        if node_tbd:
+            if node_tbd.data == data:
+                self.head = node_tbd.next
+                return
+
+        while node_tbd:
+            if node_tbd.data == data:
+                prev.next = node_tbd.next
+                return
+            prev = node_tbd
+            node_tbd = node_tbd.next
 
     def search(self, data):
         last = self.head
-        while last is not None:
+
+        while last:
             if last.data == data:
-                return True
-                break
+                return last
             last = last.next
-        return False
+
+        # Here we can also raise Exception("Element not found")
+        return None
+
 
