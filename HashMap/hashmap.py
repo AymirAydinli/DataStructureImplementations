@@ -5,13 +5,19 @@ class HashMap:
         self.filled = 0
 
     def hash_function(self, index):
-        return hash(index) % self.size
+        if isinstance(index, str):
+            hashed = [ord(_) for _ in index]
+            return sum(hashed) % self.size
+        elif isinstance(index, int):
+            return (index * 2654435761) % (2 ** 3)
+        else:
+            raise ValueError("input should be integer or string")
 
     def add(self, index, value):
 
         if self.items[self.hash_function(index)] is not None:
-            # raise ValueError("Collision happened, please input a different index")
-            return "Collision happened, please input a different index"
+            #raise Exception("Collision happened, please input a different index")
+            self.items[self.hash_function(index)] = value
         else:
             self.items[self.hash_function(index)] = value
             self.filled += 1
@@ -20,19 +26,16 @@ class HashMap:
         if self.items[self.hash_function(index)] is not None:
             return self.items[self.hash_function(index)]
         else:
-            return "Empty"
+            raise Exception("Element don't exist")
 
     def remove(self, index):
         if self.items[self.hash_function(index)] is not None:
             self.items[self.hash_function(index)] = None
             self.filled -= 1
         else:
-            # raise ValueError("index is already empty")
-            return "index is already empty"
+            raise ValueError("index is empty")
 
     def capacity(self):
-        return "length is: " + str(len(self.items)) + " and filled is: " + str(self.filled)
+        return len(self.items)
 
 
-if __name__ == "__main__":
-    main()

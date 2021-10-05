@@ -6,30 +6,26 @@ class TestHashMap(unittest.TestCase):
     def test_hashmap(self):
         hashmap = HashMap(200)
 
-        self.assertEqual(hashmap.capacity(), "length is: 200 and filled is: 0", "capacity should return the length and "
-                                                                                "capacity of hashmap")
+        self.assertEqual(hashmap.capacity(), 200, "should return 200")
 
         hashmap.add(10, "Amazon")
         hashmap.add("Arthur", "Facebook")
         hashmap.add("a", "Google")
-        hashmap.add(60, "Uber")
+        hashmap.add(70, "Uber")
 
-        self.assertEqual(hashmap.capacity(), "length is: 200 and filled is: 4", "capacity should return the length and "
-                                                                                "capacity of hashmap")
-        self.assertEqual(hashmap.get(10), "Amazon", "it should get Amazon")
-        self.assertEqual(hashmap.get("Arthur"), "Facebook", "it should get Facebook")
-        self.assertEqual(hashmap.get(60), "Uber", "it should get Uber")
-        self.assertEqual(hashmap.get(140), "Empty", "it should get Empty")
+        self.assertEqual(hashmap.filled, 4, "Should return 4")
+        self.assertEqual(hashmap.get(10), "Amazon", "should return Amazon")
+        self.assertEqual(hashmap.get("Arthur"), "Facebook", "should return Facebook")
+        self.assertEqual(hashmap.get(70), "Uber", "should get Uber")
 
         hashmap.remove(10)
 
-        self.assertEqual(hashmap.capacity(), "length is: 200 and filled is: 3", "capacity should return the length and "
-                                                                                "capacity of hashmap")
+        self.assertEqual(hashmap.filled, 3, "Should return 4")
 
-        self.assertEqual(hashmap.remove(10), "index is already empty", "index is already empty")
-        self.assertEqual(hashmap.add(60, "Citi"), "Collision happened, please input a different index", "Collision happened, "
-                                                                                                "please input a "
-                                                                                                "different index")
+        self.assertRaises(ValueError, hashmap.remove, 10)
+        self.assertRaises(Exception, hashmap.get, 10)
+
+        self.assertRaises(Exception, hashmap.add, 60)
 
 
 if __name__ == "__main__":

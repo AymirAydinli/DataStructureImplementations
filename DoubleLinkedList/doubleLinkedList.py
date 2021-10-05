@@ -8,17 +8,20 @@ class Node:
 class DoubleLinkedList:
     def __init__(self):
         self.head = None
+        self.size = 0
 
     def add_front(self, data):
         node = Node(data)
         node.next = self.head
         self.head.prev = node
         self.head = node
+        self.size += 1
 
     def add_last(self, data):
         node = Node(data)
         if self.head is None:
             self.head = node
+            self.size += 1
             return
         last = self.head
         while last.next:
@@ -26,32 +29,35 @@ class DoubleLinkedList:
         last.next = node
         node.prev = last
 
+        self.size += 1
+
     def search(self, data):
         last = self.head
-        while last is not None:
+        while last:
             if last.data == data:
-                return True
-                break
+                return last
             last = last.next
-        return False
+        raise Exception("Element not found")
+
 
     def remove(self, data):
-        nodeH = self.head
-        if nodeH is not None:
-            if nodeH.data == data:
-                self.head = nodeH.next
-                nodeH = None
+        node_tbd = self.head
+        if node_tbd is not None:
+            if node_tbd.data == data:
+                self.head = node_tbd.next
+                node_tbd = None
                 return
-        while nodeH is not None:
-            if nodeH.data == data:
+        while node_tbd is not None:
+            if node_tbd.data == data:
                 break
-            nodeH = nodeH.next
+            node_tbd = node_tbd.next
 
-        nodeH.next.prev = nodeH.prev
-        nodeH.prev.next = nodeH.next
-        nodeH = None
+        node_tbd.next.prev = node_tbd.prev
+        node_tbd.prev.next = node_tbd.next
+        node_tbd = None
+        self.size -= 1
 
-    def printForward(self):
+    def to_array(self):
         items = []
         last = self.head
         while last is not None:
@@ -59,7 +65,7 @@ class DoubleLinkedList:
             last = last.next
         return items
 
-    def printBackward(self):
+    def to_reverse_array(self):
         items = []
         last = self.head
         while last.next is not None:
@@ -83,6 +89,7 @@ class DoubleLinkedList:
         node.prev = target
         target.next.prev = node
         target.next = node
+        self.size += 1
 
     def add_before(self, item, data):
         node = Node(data)
@@ -98,4 +105,4 @@ class DoubleLinkedList:
         node.prev = target.prev
         target.prev.next = node
         target.prev = node
-
+        self.size += 1
