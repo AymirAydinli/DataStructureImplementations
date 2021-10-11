@@ -16,8 +16,7 @@ class HashMap:
     def add(self, index, value):
 
         if self.items[self.hash_function(index)] is not None:
-            #raise Exception("Collision happened, please input a different index")
-            self.items[self.hash_function(index)] = value
+            raise Exception("Collision happened, please input a different index")
         else:
             self.items[self.hash_function(index)] = value
             self.filled += 1
@@ -37,5 +36,6 @@ class HashMap:
 
     def capacity(self):
         return len(self.items)
+
 
 
